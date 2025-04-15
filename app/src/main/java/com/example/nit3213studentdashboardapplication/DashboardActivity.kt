@@ -13,9 +13,13 @@ import com.example.nit3213studentdashboardapplication.model.DashboardResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import org.koin.android.ext.android.inject
+import com.example.nit3213studentdashboardapplication.api.ApiService
+
 
 class DashboardActivity : AppCompatActivity() {
 
+    private val apiService: ApiService by inject()
     private lateinit var binding: ActivityDashboardBinding
     private lateinit var adapter: EntityAdapter
 
@@ -32,7 +36,7 @@ class DashboardActivity : AppCompatActivity() {
 
         val keypass = intent.getStringExtra("keypass") ?: ""
 
-        RetrofitClient.api.getDashboardData(keypass).enqueue(object : Callback<DashboardResponse> {
+        apiService.getDashboardData(keypass).enqueue(object : Callback<DashboardResponse> {
             override fun onResponse(
                 call: Call<DashboardResponse>,
                 response: Response<DashboardResponse>
