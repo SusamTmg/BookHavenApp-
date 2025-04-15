@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nit3213studentdashboardapplication.EntityAdapter
+import android.content.Intent
 import com.example.nit3213studentdashboardapplication.api.RetrofitClient
 import com.example.nit3213studentdashboardapplication.databinding.ActivityDashboardBinding
 import com.example.nit3213studentdashboardapplication.model.DashboardResponse
@@ -25,10 +26,6 @@ class DashboardActivity : AppCompatActivity() {
 
         val keypass = intent.getStringExtra("keypass") ?: ""
 
-        adapter = EntityAdapter()
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
-
         // Call API to fetch book data
         RetrofitClient.api.getDashboardData(keypass).enqueue(object : Callback<DashboardResponse> {
             override fun onResponse(
@@ -37,7 +34,21 @@ class DashboardActivity : AppCompatActivity() {
             ) {
                 if (response.isSuccessful) {
                     val books = response.body()?.entities ?: emptyList()
-                    adapter.setData(books)
+
+                    // SETUP ADAPTER + ON ITEM CLICK
+                    adapter = EntityAdapter(books) { selectedBook ->
+                        val intent = Intent(this@DashboardActivity, DetailsActivity::class.java)
+                        intent.putExtra("title", selectedBook.title)
+                        intent.putExtra("author", selectedBook.author)
+                        intent.putExtra("genre", selectedBook.genre)
+                        intent.putExtra("year", selectedBook.publicationYear)
+                        intent.putExtra("description", selectedBook.description)
+                        startActivity(intent)
+                    }
+
+                    binding.recyclerView.layoutManager = LinearLayoutManager(this@DashboardActivity)
+                    binding.recyclerView.adapter = adapter
+
                 } else {
                     Toast.makeText(this@DashboardActivity, "Failed to load books", Toast.LENGTH_SHORT).show()
                 }
@@ -48,5 +59,3 @@ class DashboardActivity : AppCompatActivity() {
                 Toast.makeText(this@DashboardActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
-    }
-}
