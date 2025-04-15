@@ -50,12 +50,19 @@ class DashboardActivity : AppCompatActivity() {
                     binding.recyclerView.adapter = adapter
 
                 } else {
-                    Toast.makeText(this@DashboardActivity, "Failed to load books", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@DashboardActivity,
+                        "Failed to load books",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
             override fun onFailure(call: Call<DashboardResponse>, t: Throwable) {
                 Log.e("Dashboard", "Error: ${t.message}")
-                Toast.makeText(this@DashboardActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@DashboardActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
+    }
+}

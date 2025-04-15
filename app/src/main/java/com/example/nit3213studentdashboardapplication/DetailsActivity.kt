@@ -1,20 +1,34 @@
 package com.example.nit3213studentdashboardapplication
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class DetailsActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_details)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        // Receive data from intent
+        val title = intent.getStringExtra("title")
+        val author = intent.getStringExtra("author")
+        val genre = intent.getStringExtra("genre")
+        val year = intent.getIntExtra("year", 0)
+        val description = intent.getStringExtra("description")
+
+        // Find TextViews
+        val titleView = findViewById<TextView>(R.id.detailTitle)
+        val authorView = findViewById<TextView>(R.id.detailAuthor)
+        val genreView = findViewById<TextView>(R.id.detailGenre)
+        val yearView = findViewById<TextView>(R.id.detailYear)
+        val descriptionView = findViewById<TextView>(R.id.detailDescription)
+
+        // Set data to views
+        titleView.text = title
+        authorView.text = "Author: $author"
+        genreView.text = "Genre: $genre"
+        yearView.text = "Published: $year"
+        descriptionView.text = "Summary: $description"
     }
 }
