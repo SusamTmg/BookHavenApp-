@@ -1,12 +1,12 @@
 package com.example.nit3213studentdashboardapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nit3213studentdashboardapplication.EntityAdapter
-import android.content.Intent
 import com.example.nit3213studentdashboardapplication.api.RetrofitClient
 import com.example.nit3213studentdashboardapplication.databinding.ActivityDashboardBinding
 import com.example.nit3213studentdashboardapplication.model.DashboardResponse
@@ -24,9 +24,14 @@ class DashboardActivity : AppCompatActivity() {
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Handle vector back arrow click inside the MaterialToolbar
+        binding.toolbar.setNavigationOnClickListener {
+            // Finish DashboardActivity and return to LoginActivity
+            finish()
+        }
+
         val keypass = intent.getStringExtra("keypass") ?: ""
 
-        // Call API to fetch book data
         RetrofitClient.api.getDashboardData(keypass).enqueue(object : Callback<DashboardResponse> {
             override fun onResponse(
                 call: Call<DashboardResponse>,
@@ -35,7 +40,7 @@ class DashboardActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val books = response.body()?.entities ?: emptyList()
 
-                    // SETUP ADAPTER + ON ITEM CLICK
+                    // Set up RecyclerView with item click
                     adapter = EntityAdapter(books) { selectedBook ->
                         val intent = Intent(this@DashboardActivity, DetailsActivity::class.java)
                         intent.putExtra("title", selectedBook.title)
@@ -60,8 +65,11 @@ class DashboardActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<DashboardResponse>, t: Throwable) {
                 Log.e("Dashboard", "Error: ${t.message}")
-                Toast.makeText(this@DashboardActivity, "Error: ${t.message}", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(
+                    this@DashboardActivity,
+                    "Error: ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }

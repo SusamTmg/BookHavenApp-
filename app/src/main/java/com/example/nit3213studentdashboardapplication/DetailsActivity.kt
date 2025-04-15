@@ -1,6 +1,7 @@
 package com.example.nit3213studentdashboardapplication
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -30,5 +31,11 @@ class DetailsActivity : AppCompatActivity() {
         genreView.text = "Genre: $genre"
         yearView.text = "Published: $year"
         descriptionView.text = "Summary: $description"
+
+        // Manual back button
+        val backBtn = findViewById<Button>(R.id.btnBackToDashboard)
+        backBtn.setOnClickListener {
+            finish() // Go back to Dashboard
+        }
     }
 }
