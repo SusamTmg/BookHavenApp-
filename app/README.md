@@ -1,6 +1,6 @@
 # Book Haven App
 
-## 📘 Project Overview
+## Project Overview
 
 **Book Haven** is an Android application developed as part of the **NIT3213 Mobile Application Development** unit at Victoria University. It follows a user-centric approach, focusing on aesthetic UI, ViewModel architecture, clean code practices, and unit testing. The core objective is to demonstrate the practical application of Android development principles using **Kotlin**, **ViewModel**, and **Retrofit**, while maintaining professional practices like **Git versioning** and **testable architecture**.
 
@@ -8,7 +8,7 @@ This version of the app includes a fully implemented **login screen** with ViewM
 
 ---
 
-## ✅ Key Features Implemented
+## Key Features Implemented
 
 ### 1. Login Screen (UI Design)
 - Custom background image with stacked book theme
@@ -30,9 +30,9 @@ This version of the app includes a fully implemented **login screen** with ViewM
 ### 4. Unit Testing
 - Tests implemented in `LoginViewModelTest.kt` using JUnit
 - Covered scenarios:
-    - ✅ Valid input
-    - ❌ Empty username
-    - ❌ Password missing `"s"` prefix
+    -  Valid input
+    -  Empty username
+    -  Password missing `"s"` prefix
 - Unit testing validates logic without running the app
 
 ### 5. Project Architecture & Libraries
@@ -57,7 +57,7 @@ This version of the app includes a fully implemented **login screen** with ViewM
     - Setup instructions
     - Assessment criteria checklist
 
-## 💻 Technologies Used
+## Technologies Used
 
 | Area                | Tools & Frameworks                |
 |---------------------|-----------------------------------|
@@ -72,7 +72,7 @@ This version of the app includes a fully implemented **login screen** with ViewM
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 ├── api │ └── RetrofitClient.kt ├── model │ ├── LoginRequest.kt │ ├── LoginResponse.kt ├── LoginActivity.kt ├── LoginViewModel.kt ├── LoginViewModelTest.kt ├── MyApplication.kt
 
 
