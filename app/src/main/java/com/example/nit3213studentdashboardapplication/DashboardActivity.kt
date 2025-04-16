@@ -8,7 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nit3213studentdashboardapplication.api.ApiService
 import com.example.nit3213studentdashboardapplication.databinding.ActivityDashboardBinding
-import com.example.nit3213studentdashboardapplication.model.DashboardResponse
+import com.example.nit3213studentdashboardapplication.model.GenericResponse
+import com.google.gson.JsonObject
 import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,12 +21,13 @@ class DashboardActivity : AppCompatActivity() {
     private val apiService: ApiService by inject()
 
     private lateinit var binding: ActivityDashboardBinding
-    private lateinit var adapter: EntityAdapter
+    private lateinit var adapter: GenericEntityAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         // Handle custom back arrow click
         binding.toolbar.setNavigationOnClickListener {
@@ -35,33 +37,29 @@ class DashboardActivity : AppCompatActivity() {
         val keypass = intent.getStringExtra("keypass") ?: ""
 
         // Use Koin-injected ApiService to fetch dashboard data
-        apiService.getDashboardData(keypass).enqueue(object : Callback<DashboardResponse> {
+        apiService.getDashboardData(keypass).enqueue(object : Callback<GenericResponse> {
             override fun onResponse(
-                call: Call<DashboardResponse>,
-                response: Response<DashboardResponse>
+                call: Call<GenericResponse>,
+                response: Response<GenericResponse>
             ) {
                 if (response.isSuccessful) {
-                    val books = response.body()?.entities ?: emptyList()
+                    val entities = response.body()?.entities ?: emptyList()
 
-                    adapter = EntityAdapter(books) { selectedBook ->
-                        val intent = Intent(this@DashboardActivity, DetailsActivity::class.java).apply {
-                            putExtra("title", selectedBook.title)
-                            putExtra("author", selectedBook.author)
-                            putExtra("genre", selectedBook.genre)
-                            putExtra("year", selectedBook.publicationYear)
-                            putExtra("description", selectedBook.description)
-                        }
+                    adapter = GenericEntityAdapter(entities) { selectedEntity ->
+                        val intent = Intent(this@DashboardActivity, DetailsActivity::class.java)
+                        // Pass the entire entity as a JSON string
+                        intent.putExtra("entity", selectedEntity.toString())
                         startActivity(intent)
                     }
 
                     binding.recyclerView.layoutManager = LinearLayoutManager(this@DashboardActivity)
                     binding.recyclerView.adapter = adapter
                 } else {
-                    Toast.makeText(this@DashboardActivity, "Failed to load books", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DashboardActivity, "Failed to load data", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<DashboardResponse>, t: Throwable) {
+            override fun onFailure(call: Call<GenericResponse>, t: Throwable) {
                 Log.e("Dashboard", "Error: ${t.message}")
                 Toast.makeText(this@DashboardActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }

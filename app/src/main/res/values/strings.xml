@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NIT3213StudentDashboardApplication</string>
+    <string name="dashboard_title">Dashboard</string>
 </resources>

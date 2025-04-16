@@ -1,6 +1,6 @@
 package com.example.nit3213studentdashboardapplication.api
 
-import com.example.nit3213studentdashboardapplication.model.DashboardResponse
+import com.example.nit3213studentdashboardapplication.model.GenericResponse
 import com.example.nit3213studentdashboardapplication.model.LoginRequest
 import com.example.nit3213studentdashboardapplication.model.LoginResponse
 import retrofit2.Call
@@ -17,5 +17,5 @@ interface ApiService {
     @GET("dashboard/{keypass}")
     fun getDashboardData(
         @Path("keypass") keypass: String
-    ): Call<DashboardResponse>
+    ): Call<GenericResponse>
 }

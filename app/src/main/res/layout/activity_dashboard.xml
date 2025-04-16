@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="#FFF8F2">
 
     <!-- Top back arrow (vector icon) toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
@@ -19,27 +19,31 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Actual dashboard heading title -->
+
+    <!-- Book List RecyclerView -->
+
     <TextView
         android:id="@+id/dashboardTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book Dashboard"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
+        android:text="Dashboard"
+        android:textColor="#4E342E"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <!-- Book List RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
         android:contentDescription="List of books"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@id/dashboardTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
