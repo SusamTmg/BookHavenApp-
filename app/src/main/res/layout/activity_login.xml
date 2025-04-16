@@ -5,88 +5,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF9F1">
+    android:background="@drawable/bookbackground"
+    tools:context=".LoginActivity">
 
-    <!-- App Title -->
-
-    <!-- Book Image -->
-
-    <!-- Username Field -->
-
-    <!-- Password Field -->
-
-    <!-- Login Button -->
 
     <TextView
         android:id="@+id/app_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="196dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="204dp"
         android:text="Book Haven"
         android:textColor="#3E2723"
-        android:textSize="28sp"
+        android:textColorLink="#CE3636"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.632"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/book_image"
-        android:layout_width="618dp"
-        android:layout_height="252dp"
-        android:layout_marginTop="36dp"
-        android:contentDescription="book image"
-        android:scaleType="centerInside"
-        android:src="@drawable/login"
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="256dp"
+        android:layout_height="23dp"
+        android:fontFamily="serif"
+        android:text="A Gateway to Literary World"
+        android:textColor="#4A2B1B"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.877"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_title" />
+        tools:layout_editor_absoluteY="256dp" />
 
     <EditText
         android:id="@+id/usernameEditText"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="213dp"
+        android:layout_height="40dp"
         android:background="@drawable/rounded_input"
         android:hint="Enter your first name"
         android:inputType="textPersonName"
         android:padding="12dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.686"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/book_image"
-        app:layout_constraintWidth_percent="0.85" />
+        app:layout_constraintWidth_percent="0.85"
+        tools:layout_editor_absoluteY="297dp" />
 
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="213dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_input"
         android:hint="Enter your Student ID"
         android:inputType="text"
         android:padding="12dp"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.686"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/usernameEditText"
         app:layout_constraintWidth_percent="0.85" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_width="213dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#5D4037"
         android:text="Login"
         android:textColor="#FFFFFF"
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.693"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText"
         app:layout_constraintWidth_percent="0.85" />
+
+    <TextView
+        android:id="@+id/login_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="serif"
+        android:text="Please sign in to continue."
+        android:textColor="#4A2B1B"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.648"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+
+    <ImageView
+        android:layout_width="231dp"
+        android:layout_height="203dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="72dp"
+        android:contentDescription="Book Logo"
+        android:scaleType="centerInside"
+        android:src="@drawable/book_logo_"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="83dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
